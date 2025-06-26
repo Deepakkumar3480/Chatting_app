@@ -28,7 +28,7 @@ export const signup = async (req,res)=>{
 
         const token = generateToken(newUser._id)
         // console.log(newUser)
-        res.json({
+        return res.json({
             success:true,
             userdata:newUser,
             token,
@@ -36,7 +36,7 @@ export const signup = async (req,res)=>{
         })
         
     } catch (error) {
-        res.json({
+        return res.json({
             success:false,
             message:error.message
         })
@@ -62,14 +62,14 @@ export const login = async (req,res)=>{
 
     } catch (error) {
         console.log(error.message)
-        res.json({success:false,message:error.message})
+        return res.json({success:false,message:error.message})
     }
 
 }
 
 //controller to check if user is authenticated
 export const checkAuth = (req,res)=>{
-    res.json({sucess:true,user:req.user});
+    return res.json({sucess:true,user:req.user});
 }
 
 //controller to update user profile details

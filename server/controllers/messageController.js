@@ -74,8 +74,8 @@ export const markMessageAsSeen = async (req,res)=>{
         return res.json({success:true})
     } catch (error) {
         console.log(error.message)
-        res.json({
-            success:true,
+        return res.json({
+            success:false,
             error:error.message
         })
     }
@@ -109,8 +109,8 @@ export const sendMessage = async (req,res)=>{
         return res.json({success:true,newMessage});
     } catch (error) {
          console.log(error.message)
-        res.json({
-            success:true,
+        return res.json({
+            success:false,
             error:error.message
         })
     }
