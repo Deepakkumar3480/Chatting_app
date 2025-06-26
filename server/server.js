@@ -56,8 +56,14 @@ app.use('/api/messages',messageRouter)
 
 await conncectDB()
 
-const PORT = process.env.PORT || 5000 ;
+//it only run for the localhost
+if(process.env.NODE_ENV!=='production'){
+    const PORT = process.env.PORT || 5000 ;
 
 server.listen(PORT,()=>{
     console.log(`server is running on ${PORT}`);
 });
+}
+//export server for vercel
+export default server;
+
