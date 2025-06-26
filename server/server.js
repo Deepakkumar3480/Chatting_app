@@ -15,7 +15,7 @@ const server = http.createServer(app);
 
 //initialize socket.io server
 export const io = new Server(server, {
-  cors: { origin: "*" },
+  cors: { origin: "https://chatting-app-qpty.onrender.com/" },
 });
 
 //store online users
