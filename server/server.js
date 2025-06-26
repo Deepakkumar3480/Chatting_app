@@ -52,6 +52,10 @@ app.use("/api/status", (req, res) => {
 app.use("/api/auth", userRouter);
 app.use("/api/messages", messageRouter);
 
+app.get('/',(req,res)=>{
+  return res.json({message:"welcome to chat app backend"})
+})
+
 await conncectDB();
 
 //it only run for the localhost
