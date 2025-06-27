@@ -15,7 +15,7 @@ const server = http.createServer(app);
 
 //initialize socket.io server
 export const io = new Server(server, {
-  cors: { origin: "https://chatting-app-seven-rho.vercel.app/" },
+  cors: { origin: process.env.FRONTED_URL },
 });
 
 //store online users
@@ -43,7 +43,24 @@ io.on("connection", (socket) => {
 //middleware setup
 
 app.use(express.json({ limit: "5mb" }));
-app.use(cors());
+// app.use(cors());
+const allowedOrigins = [
+  'https://chatting-app-seven-rho.vercel.app',
+  'https://chatting-app-git-main-deepakkumar3480s-projects.vercel.app',
+  'http://localhost:3000'
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS not allowed for this origin: ' + origin));
+    }
+  },
+  credentials: true
+}));
+
 
 app.use("/api/status", (req, res) => {
   res.send("server is live");
